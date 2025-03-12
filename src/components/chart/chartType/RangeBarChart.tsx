@@ -1,15 +1,10 @@
-"use client"
-import dynamic from "next/dynamic"
-
-const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false })
-
-interface ChartSeries {
-    name: string
-    data: { x: string; y: number[] }[]
-}
+import BaseChart from "./BaseChart"
 
 export default function RangeBarChart() {
-    const chartSeries: ChartSeries[] = [
+    const rangeBarChartSeries:
+        | ApexAxisChartSeries
+        | ApexNonAxisChartSeries
+        | undefined = [
         {
             name: "Dumbbell Chart",
             data: [
@@ -45,53 +40,53 @@ export default function RangeBarChart() {
         },
     ]
 
-    return (
-        <ApexChart
-            type="rangeBar" //공식문서에는 bar로 되어있지만, rangeBar로 해야 정상적으로 작동함
-            series={chartSeries}
-            width="100%"
-            height="100%"
-            options={{
-                colors: ["#030677", "#36B4AD"],
-                plotOptions: {
-                    bar: {
-                        isDumbbell: true,
-                        columnWidth: 3,
-                        dumbbellColors: [["#030677", "#36B4AD"]],
-                    },
-                },
-                legend: {
+    const rangeBarChartOptions: ApexCharts.ApexOptions = {
+        colors: ["#030677", "#36B4AD"],
+        plotOptions: {
+            bar: {
+                isDumbbell: true,
+                columnWidth: 3,
+                dumbbellColors: [["#030677", "#36B4AD"]],
+            },
+        },
+        legend: {
+            show: true,
+            showForSingleSeries: false,
+            position: "top",
+            horizontalAlign: "left",
+            customLegendItems: ["Product A", "Product B"],
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                type: "vertical",
+                gradientToColors: ["#36B4AD"],
+                inverseColors: true,
+                stops: [0, 100],
+            },
+        },
+        grid: {
+            xaxis: {
+                lines: {
                     show: true,
-                    showForSingleSeries: false,
-                    position: "top",
-                    horizontalAlign: "left",
-                    customLegendItems: ["Product A", "Product B"],
                 },
-                fill: {
-                    type: "gradient",
-                    gradient: {
-                        type: "vertical",
-                        gradientToColors: ["#36B4AD"],
-                        inverseColors: true,
-                        stops: [0, 100],
-                    },
+            },
+            yaxis: {
+                lines: {
+                    show: false,
                 },
-                grid: {
-                    xaxis: {
-                        lines: {
-                            show: true,
-                        },
-                    },
-                    yaxis: {
-                        lines: {
-                            show: false,
-                        },
-                    },
-                },
-                xaxis: {
-                    tickPlacement: "on",
-                },
-            }}
+            },
+        },
+        xaxis: {
+            tickPlacement: "on",
+        },
+    }
+
+    return (
+        <BaseChart
+            type="rangeBar"
+            series={rangeBarChartSeries}
+            options={rangeBarChartOptions}
         />
     )
 }
