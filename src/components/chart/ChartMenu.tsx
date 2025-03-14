@@ -1,4 +1,4 @@
-import { SquareChevronRight } from "lucide-react"
+import { SquareChevronLeft, SquareChevronRight } from "lucide-react"
 import { ChartListType } from "@/type/ChartListType"
 import { ChartList } from "@/lib/ChartList"
 import Link from "next/link"
@@ -31,12 +31,15 @@ export default function ChartMenu({
                     >
                         Chart list
                     </h1>
-
                     <div
                         className="hover:bg-sidebar-border flex cursor-pointer items-center justify-center rounded-lg p-3"
                         onClick={handleMenuToggle}
                     >
-                        <SquareChevronRight />
+                        {isMenuOpened ? (
+                            <SquareChevronLeft />
+                        ) : (
+                            <SquareChevronRight />
+                        )}
                     </div>
                 </div>
                 <div
