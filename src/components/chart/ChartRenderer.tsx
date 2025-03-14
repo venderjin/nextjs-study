@@ -6,6 +6,7 @@ import LineChart from "@/components/chart/chartType/LineChart"
 import AreaChart from "@/components/chart/chartType/AreaChart"
 import RangeBarChart from "@/components/chart/chartType/RangeBarChart"
 import ColumnChart from "@/components/chart/chartType/ColumnChart"
+import BarChart from "@/components/chart/chartType/BarChart"
 
 import {
     Card,
@@ -29,6 +30,7 @@ export default function ChartRenderer({ chartType }: ChartRendererProps) {
         "line-chart": <LineChart />,
         "area-chart": <AreaChart />,
         "column-chart": <ColumnChart />,
+        "bar-chart": <BarChart />,
         "range-bar-chart": <RangeBarChart />,
     }
 

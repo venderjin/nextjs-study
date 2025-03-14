@@ -21,6 +21,12 @@ export const ChartList: ChartListType[] = [
     },
     {
         id: 4,
+        name: "Bar Chart",
+        type: "bar-chart",
+        docs: "https://apexcharts.com/react-chart-demos/bar-charts",
+    },
+    {
+        id: 5,
         name: "Range Bar Chart",
         type: "range-bar-chart",
         docs: "https://apexcharts.com/react-chart-demos/column-charts/dumbbell-chart/",
